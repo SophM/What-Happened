@@ -54,7 +54,7 @@ app.set("view engine", "handlebars");
 // Connect to the MongoDB
 // ---------------------------------------------------
 
-// If deployed, use the deployed database. Otherwise use the local database called ""
+// If deployed, use the deployed database. Otherwise use the local database called "newsArticles"
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsArticles";
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
@@ -62,6 +62,11 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 // ---------------------------------------------------
 // Routes
 // --------------------------------------------------- 
+
+// define the route to display the home page
+app.get("/", function(req, res) {
+    res.render("index");
+});
 
 
 
