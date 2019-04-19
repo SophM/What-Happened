@@ -19,7 +19,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // load the MongoDB models
-var db = require("/models");
+var db = require("./models");
 
 
 // ---------------------------------------------------
