@@ -82,7 +82,7 @@ app.get("/", function(req, res) {
 });
 
 // define the route to display the "saved articles" page
-app.get("/save-articles", function(req, res) {
+app.get("/saved-articles", function(req, res) {
     db.Article.find({saved:true})
         .then(function(dbArticle) {
             var hbsObj = {
@@ -91,7 +91,7 @@ app.get("/save-articles", function(req, res) {
             console.log(hbsObj);
             // If we were able to successfully find Articles
             // render the page with the data
-            res.render("save-article", hbsObj);
+            res.render("saved-articles", hbsObj);
         })
         .catch(function(err) {
             // If an error occurred, log it
@@ -173,9 +173,9 @@ app.post("/save-article/:id", function(req, res) {
     res.end();
 });
 
-// define the route to delete a saved article when its "delete-save-article" button has been clicked
+// define the route to delete a saved article
 app.post("/delete-article/:id", function(req, res) {
-    // delete one - the saved article whose button has been clicked
+    // delete one - the saved article whose "delete-save-article" button has been clicked
     db.Article.deleteOne({ _id: req.params.id })
         .then(function(dbArticle) {
             // View the updated result in the console
@@ -190,7 +190,21 @@ app.post("/delete-article/:id", function(req, res) {
     res.end();
 });
 
-
+// define the route to populate a saved article with its note
+app.get("/note-article/:id", function(req, res) {
+    // find one - the saved article whose "note" button has been clicked
+    db.Article.findOne({ _id: req.params.id })
+      // populate all of the notes associated with it
+      .populate("note")
+      .then(function(dbArticle) {
+        // If we were able to successfully find an Article with the given id, send it back to the client
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
 
 
 
