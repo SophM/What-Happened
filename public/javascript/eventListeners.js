@@ -63,10 +63,11 @@ $(document).on("click", ".delete-saved-article", function(event) {
     });
 });
 
-// event listener on the "note" button to add note to saved articles
+// event listener on the "note" button to add note to a saved article
 $(document).on("click", ".note-button", function() {
-    // Empty the notes from the note section
-    $("#notes").empty();
+    // Empty the notes from the note section so we don't get a new text area
+    // each time we click on the "note" button
+    $("#new-note").empty();
     // grab the id of the article whose button has been clicked
     var articleID = $(this).data("id");
     // console.log(articleID);
@@ -76,24 +77,49 @@ $(document).on("click", ".note-button", function() {
         method: "GET"
     }).then(function(data) {
         console.log(data);
-        // The title of the article
-        $("#notes").append("<h2>" + data.title + "</h2>");
-        // An input to enter a new title
-        $("#notes").append("<input id='titleinput' name='title' >");
-        // A textarea to add a new note body
-        $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-        // A button to submit a new note, with the id of the article saved to it
-        $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+
+        // add a header to the modal
+        $("#header-note").text("Note for " + data.title);
+        // add a textarea to be able to write the note
+        $("#new-note").append("<textarea class='w-100' id='body-input' name='body'></textarea>");
+        // add a button to save the note
+        $("#new-note").append("<br/><button class='btn btn-sm btn-success save-note' data-id='" + data._id + "'>Save Note</button>");
+
+        // display the modal
+        $("#modal-notes").modal("toggle");
   
-        // If there's a note in the article
-        if (data.note) {
-          // Place the title of the note in the title input
-          $("#titleinput").val(data.note.title);
-          // Place the body of the note in the body textarea
-          $("#bodyinput").val(data.note.body);
+        // If there are notes in the article
+        if (data.notes) {
+            // loop through the notes and display them
+            for (var i = 0; i < data.notes.length; i++) {
+                // Place the body of the note in the body textarea
+                $("#new-note").prepend("<p>" + data.notes[i].body + "</p><hr/>");
+            }   
         }
-      });
-  });
+    });
+});
+
+// event listener on the "save-note" button to save the note
+$(document).on("click", ".save-note", function() {
+    // grab the id of the article whose button has been clicked
+    var articleID = $(this).data("id");
+
+    // grab the text entered
+    var data = {
+        body: $("#body-input").val().trim()
+    }
+
+    // post request
+    $.ajax("/note-article/" + articleID, {
+        method: "POST",
+        data: data
+    }).then(function(data) {
+        // Log the response
+        console.log(data);
+        // close the modal
+        $("#modal-notes").modal("toggle");
+    });
+});
 
 
 

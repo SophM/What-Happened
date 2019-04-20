@@ -34,10 +34,12 @@ var ArticleSchema = new Schema({
         required: true,
         default: false
     },
-    note: {
-        type: Schema.Types.ObjectId,
-        ref: "Note"
-    }
+    notes: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Note"
+        }
+    ]
 });
 
 

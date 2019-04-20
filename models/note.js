@@ -17,9 +17,6 @@ var Schema = mongoose.Schema;
 
 // create a new Schema and store in a variable
 var NoteSchema = new Schema({
-    title: {
-        type: String,
-    },
     body: {
         type: String,
     }
