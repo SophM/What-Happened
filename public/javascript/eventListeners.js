@@ -11,19 +11,24 @@ $("#scrape").on("click", function(event) {
     $.ajax("/scrape", {
         method: "GET"
     }).then(function() {
-        // reload so the articles are displayed
+        // reload the page
         location.reload();
     });
 });
 
-// Grab the articles as a json
-$.getJSON("/articles", function(data) {
-    // For each one
-    for (var i = 0; i < data.length; i++) {
-      // Display the apropos information on the page
-      $("#news-articles").append("<a href='https://www.nytimes.com" + data[i].url + "' target='_blank'><h4>" + data[i].title + "</h4></a><p class='mb-2'>" + data[i].summary + "</p><button class='btn btn-warning save-button mb-5' type='submit' data-id='" + data[i]._id + "'>Save Article</button><br/>");
-    }
-}); 
+// event listener on the "delete" button to delete the unsaved articles
+$("#delete").on("click", function(event) {
+    // prevent the page to refresh
+    event.preventDefault();
+
+    // post request to delete the articles that haven't been saved
+    $.ajax("/delete-articles", {
+        method: "POST"
+    }).then(function() {
+        // reload the page
+        location.reload();
+    });
+})
 
 // event listener on the "save" buttons
 $(document).on("click", ".save-button", function(event) {
@@ -34,15 +39,31 @@ $(document).on("click", ".save-button", function(event) {
     var articleID = $(this).data("id");
     // console.log(articleID);
 
-    // put request to update the value of "save" in the Article collection
+    // post request to update the value of "save" in the Article collection
     $.ajax("/save-article/" + articleID, {
         method: "POST"
     }).then(function() {
-        // reload so the articles are displayed
+        // reload the page
         location.reload();
     });
+});
 
+// event listener on the "delete-saved-article" button to delete the saved articles
+$(document).on("click", ".delete-saved-article", function(event) {
+    // prevent the page to refresh
+    event.preventDefault();
 
+    // grab the id of the article whose button has been clicked
+    var articleID = $(this).data("id");
+    // console.log(articleID);
+
+    // post request to delete the saved article whose "delete" button has been clicked
+    $.ajax("/delete-article/" + articleID, {
+        method: "POST"
+    }).then(function() {
+        // reload the page
+        location.reload();
+    });
 });
 
 

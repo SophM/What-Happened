@@ -2,28 +2,22 @@
 
 <div class="row mb-4">
     <div class="col">
-        <a href="/save-articles">Go to saved articles</a>
+        <a href="/">Go to home page</a>
      </div>
 </div>
 
 <div class="row">
     <div class="col">
-        <button id="scrape" class="btn btn-lg btn-success" type="submit">Get me some news!</button>
-        <button id="delete" class="btn btn-lg btn-danger text-white ml-3" type="submit">Delete the news!</button>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
         <div id="news-articles">
-            {{#each data}}
+             {{#each data}}
                 <div class="row">
                     <div class="col">
                         <a href={{url}} target='_blank'>
                             <h4>{{title}}</h4>
                         </a>
                         <p>{{summary}}</p>
-                        <button class="btn btn-warning save-button mb-5" type="submit" data-id={{_id}}>Save Article</button>
+                        <button class="btn btn-danger delete-saved-article mb-5" type="submit" data-id={{_id}}>Delete from saved</button>
+                        <button class="btn btn-info text-white note-button mb-5" type="submit" data-id={{_id}}>Note</button>
                     </div>
                 </div>
             {{/each}}
