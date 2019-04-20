@@ -70,6 +70,9 @@ app.get("/", function(req, res) {
 
 // define the route to scrape NYT website
 app.get("/scrape", function(req, res) {
+    // delete all documents that exist in the "Article" collection
+    // to avoid having the same articles twice when "scrape" button clicked several times in a row
+    db.Article.deleteMany({});
     // grab the body of the html with axios
     axios.get("https://www.nytimes.com/").then(function(response) {
         // load that into cheerio and save it to $ for a shorthand selector
@@ -92,7 +95,7 @@ app.get("/scrape", function(req, res) {
                 .children("p")
                 .text();
   
-            // Create a new Article using the `result` object built from scraping
+            // Create new documents within the "Article" collection using the `result` object built from scraping
             db.Article.create(result)
                 .then(function(dbArticle) {
                     // View the added result in the console
@@ -121,6 +124,25 @@ app.get("/articles", function(req, res) {
             res.json(err);
         });
 });
+
+// define the route to save article when "save" button clicked
+app.post("/save-article/:id", function(req, res) {
+    // find and update the article corresponding to the id
+    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true }, { new: true })
+    .then(function(dbArticle) {
+        // View the added result in the console
+        console.log(dbArticle);
+    })
+    .catch(function(err) {
+        // If an error occurred, log it
+        console.log(err);
+    })
+    // close the connection
+    res.end();
+});
+
+
+// define the route to delete all the articles that haven't been saved
 
 
 
