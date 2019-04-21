@@ -1,43 +1,43 @@
-<h1>What happened?!</h1>
+<div class="container mt-3 text-center mx-auto">
 
-<div class="row mb-4">
-    <div class="col">
-        <a href="/">Go to home page</a>
-     </div>
-</div>
+    <div class="row">
+        <div class="col">
+            <h1 id="title" class="display-3">What happened?!</h1>
+            <hr id="separator" />
+            <a href="/" class="btn btn-lg p-1 btn-info ml-3">Go to home page</a>
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col">
-        <div id="news-articles">
-             {{#each data}}
-                <div class="row">
-                    <div class="col">
-                        <a href="https://www.nytimes.com{{url}}" target='_blank'>
-                            <h4>{{title}}</h4>
-                        </a>
-                        <p>{{summary}}</p>
-                        <button class="btn btn-danger delete-saved-article mb-5" data-id={{_id}}>Delete from saved</button>
-                        <button class="btn btn-info text-white note-button mb-5" data-id={{_id}}>Note</button>
+    <div class="row mt-5 mb-5">
+        {{#each data}}
+            <div class="col">
+                <div id="news-articles" class="card float-left m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <a class="card-link" href="https://www.nytimes.com{{url}}" target='_blank'><h5 class="card-title article-title">{{title}}</h5></a>
+                        <p class="card-text">{{summary}}</p>
+                        <button class="btn btn-danger delete-saved-article mb-5" data-id={{_id}}>Delete</button>
+                        <button class="btn text-white note-button mb-5" data-id={{_id}}>Note</button>
                     </div>
                 </div>
-            {{/each}}
-        </div>
+            </div>
+        {{/each}} 
     </div>
-</div>
 
-<div class="modal" id="modal-notes" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="header-note" class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="new-note"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div class="modal" id="modal-notes" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="header-note" class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="new-note"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
+
 </div>

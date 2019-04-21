@@ -1,3 +1,34 @@
-/* font-family: 'Anton', sans-serif; */
-/* font-family: 'Poppins', sans-serif; */
-/* font-family: 'Roboto Mono', monospace; */
+body {
+    background-image: url("../images/newspapers.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#title {
+    font-family: 'Anton', sans-serif;
+    text-shadow: 3px 3px white;  
+}
+
+#separator {
+    background-color: black;
+    height: 5px;
+}
+
+.article-title {
+    color: black;
+    font-weight: bold;
+}
+
+.article-title:hover {
+    color: orange;
+}
+
+.note-button {
+    background-color: purple;
+}
+
+
+

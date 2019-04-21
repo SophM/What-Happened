@@ -1,32 +1,28 @@
-<h1>What happened?!</h1>
+<div class="container mt-3 text-center mx-auto">
 
-<div class="row mb-4">
-    <div class="col">
-        <a href="/saved-articles">Go to saved articles</a>
-     </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <button id="scrape" class="btn btn-lg btn-success" type="submit">Get me some news!</button>
-        <button id="delete" class="btn btn-lg btn-danger text-white ml-3" type="submit">Delete the news!</button>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <div id="news-articles">
-            {{#each data}}
-                <div class="row">
-                    <div class="col">
-                        <a href="https://www.nytimes.com{{url}}" target='_blank'>
-                            <h4>{{title}}</h4>
-                        </a>
-                        <p>{{summary}}</p>
-                        <button class="btn btn-warning save-button mb-5" type="submit" data-id={{_id}}>Save Article</button>
-                    </div>
-                </div>
-            {{/each}}
+    <div class="row">
+        <div class="col mx-auto">
+            <h1 id="title" class="display-3">What happened?!</h1>
+            <hr id="separator" />
+            <button id="scrape" class="btn btn-lg btn-success p-1 mt-1" type="submit">Get me some news!</button>
+            <button id="delete" class="btn btn-lg btn-danger text-white p-1 mt-1" type="submit">Delete the
+                news!</button>
+            <a href="/saved-articles" class="btn btn-lg p-1 btn-info mt-1">Go to saved articles</a>
         </div>
     </div>
+
+    <div class="row mt-5 mb-5">
+        {{#each data}}
+            <div class="col-sm-4 mx-auto">
+                <div id="news-articles" class="card mt-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <a class="card-link" href="https://www.nytimes.com{{url}}" target='_blank'><h5 class="card-title article-title">{{title}}</h5></a>
+                        <p class="card-text">{{summary}}</p>
+                        <button class="btn btn-info save-button p-1" type="submit" data-id={{_id}}>Save Article</button>
+                    </div>
+                </div>
+            </div>
+        {{/each}} 
+    </div>
+
 </div>

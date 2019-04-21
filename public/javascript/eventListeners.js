@@ -79,7 +79,7 @@ $(document).on("click", ".note-button", function() {
         console.log(data);
 
         // add a header to the modal
-        $("#header-note").text("Note for " + data.title);
+        $("#header-note").text("Note for: '" + data.title +"'");
         // add a textarea to be able to write the note
         $("#new-note").append("<textarea class='w-100' id='body-input' name='body'></textarea>");
         // add a button to save the note
