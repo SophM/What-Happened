@@ -26,7 +26,7 @@ To build this app, I used the following technologies:
 
 ### Code snippet showing how to create the "Article" model using the "mongoose" node package
 
-![Code snippet showing the "Article" model]()
+![Code snippet showing the "Article" model](https://github.com/SophM/What-Happened/blob/master/for-readme/code%20snippet-article-model.png?raw=true)
 
 ---
 
