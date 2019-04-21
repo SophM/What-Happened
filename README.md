@@ -24,7 +24,7 @@ To build this app, I used the following technologies:
 
 ---
 
-### Code snippet showing the "Article" model using the "mongoose" node package
+### Code snippet showing how to create the "Article" model using the "mongoose" node package
 
 ![Code snippet showing the "Article" model]()
 
@@ -32,19 +32,13 @@ To build this app, I used the following technologies:
 
 ### Screenshot of the app
 
-![Screenshot of the app]();
+![Screenshot of the app](https://github.com/SophM/What-Happened/blob/master/for-readme/screenshot-main-page.png?raw=true);
 
 ---
 
 ### GIF showing the app in action
 
-![GIF showing the app in action]()
-
----
-
-### GIF showing the responsive layout of "What Happened?!"
-
-![GIF showing the responsive layout of "One Day"]()
+![GIF showing the app in action](https://github.com/SophM/What-Happened/blob/master/for-readme/GIF-app-in-action.gif?raw=true)
 
 ---
 
