@@ -9,18 +9,20 @@
     </div>
 
     <div class="row mt-5 mb-5">
-        {{#each data}}
-            <div class="col">
-                <div id="news-articles" class="card float-left m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <a class="card-link" href="https://www.nytimes.com{{url}}" target='_blank'><h5 class="card-title article-title">{{title}}</h5></a>
-                        <p class="card-text">{{summary}}</p>
-                        <button class="btn btn-danger delete-saved-article mb-5" data-id={{_id}}>Delete</button>
-                        <button class="btn text-white note-button mb-5" data-id={{_id}}>Note</button>
+        <div class="col mx-auto">
+            <div class="card-columns">
+                {{#each data}}
+                    <div id="news-articles" class="card mt-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <a class="card-link" href="https://www.nytimes.com{{url}}" target='_blank'><h5 class="card-title article-title">{{title}}</h5></a>
+                            <p class="card-text">{{summary}}</p>
+                            <button class="btn btn-danger delete-saved-article mb-5" data-id={{_id}}>Delete</button>
+                            <button class="btn text-white note-button mb-5" data-id={{_id}}>Note</button>
+                        </div>
                     </div>
-                </div>
+                {{/each}}
             </div>
-        {{/each}} 
+        </div>
     </div>
 
     <div class="modal" id="modal-notes" tabindex="-1" role="dialog">

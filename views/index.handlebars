@@ -12,17 +12,19 @@
     </div>
 
     <div class="row mt-5 mb-5">
-        {{#each data}}
-            <div class="col-sm-4 mx-auto">
-                <div id="news-articles" class="card mt-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <a class="card-link" href="https://www.nytimes.com{{url}}" target='_blank'><h5 class="card-title article-title">{{title}}</h5></a>
-                        <p class="card-text">{{summary}}</p>
-                        <button class="btn btn-info save-button p-1" type="submit" data-id={{_id}}>Save Article</button>
+        <div class="col mx-auto">
+            <div class="card-columns">
+                {{#each data}}
+                    <div id="news-articles" class="card mt-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <a class="card-link" href="https://www.nytimes.com{{url}}" target='_blank'><h5 class="card-title article-title">{{title}}</h5></a>
+                            <p class="card-text">{{summary}}</p>
+                            <button class="btn btn-info save-button p-1" type="submit" data-id={{_id}}>Save Article</button>
+                        </div>
                     </div>
-                </div>
+                {{/each}}
             </div>
-        {{/each}} 
+        </div>
     </div>
 
 </div>
